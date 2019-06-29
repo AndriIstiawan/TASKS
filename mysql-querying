@@ -1,0 +1,7 @@
+SELECT 
+  x.userid, 
+  x.username, 
+  y.username AS ParentUserName 
+FROM users x 
+INNER JOIN users y 
+  ON x.userid = y.parent;

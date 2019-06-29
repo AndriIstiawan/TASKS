@@ -1,0 +1,10 @@
+function getString(str) {
+    let newStr = str.split('(');
+    for(i = 1; i < newStr.length; i++) {
+        console.log(newStr[i].split(')')[0]);
+    }
+}
+
+// TESTING
+// let data = "(23 Maret 2018) Some string is below here (please note below): The dummy formula is a=(x+y(a-b))-100.";
+// getString(data);

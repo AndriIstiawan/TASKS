@@ -1,0 +1,14 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const UserRequestSchema = new Schema({
+    reqTime: {
+        type: Date,
+    },
+    keyword: {
+        type: String
+    },
+    result: []
+})
+
+module.exports = mongoose.model("UserRequest", UserRequestSchema);

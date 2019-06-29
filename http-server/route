@@ -1,0 +1,27 @@
+var express = require('express')
+var app = express()
+
+const userrequest = require('./model');
+const DataMovie = require('./DataMovie');
+
+app.get('/movie-search/:keyword', function (req, res) {
+  let keyword = req.params.keyword
+  DataMovie.find({name : keyword})
+  .then(movie=>{
+    let newUserRequest = new userrequest({
+      keyword: movie.name,
+      reqTime: Date.now(),
+      result: [movie]
+    })
+    newUserRequest.save()
+    .then(userrequests => {
+      res.status(200).json({ success: true, userrequests: userrequests });
+    })
+    .catch(err => {
+        res.status(500).json({ success: false, error: err })
+    })
+  })
+  .catch(err => {
+      res.status(500).json({ success: false, error: err })
+  })
+})
